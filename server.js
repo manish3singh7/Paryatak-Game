@@ -41,9 +41,6 @@ app.get('/api/leaderboard', (req, res) => {
     scores.sort((a, b) => b.score - a.score);
     res.json(scores.slice(0, 10));
 });
-app.get('/{*splat}', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 
 // POST /api/score — saves a player's score
 app.post('/api/score', (req, res) => {
@@ -68,9 +65,9 @@ app.post('/api/score', (req, res) => {
 });
 
 // Fallback to index.html for root path
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
