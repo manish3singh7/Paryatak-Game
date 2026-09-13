@@ -65,7 +65,8 @@ app.post('/api/score', (req, res) => {
 });
 
 // Fallback to index.html for root path
-app.get('*', (req, res) => {
+
+app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 app.use((req, res) => {
